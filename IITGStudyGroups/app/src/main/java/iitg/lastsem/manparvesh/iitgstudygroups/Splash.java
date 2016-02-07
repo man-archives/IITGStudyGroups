@@ -1,10 +1,12 @@
 package iitg.lastsem.manparvesh.iitgstudygroups;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
+import android.widget.TextView;
 
 import iitg.lastsem.manparvesh.iitgstudygroups.activity.LoginRegister;
 
@@ -45,5 +47,16 @@ public class Splash extends AppCompatActivity {
             }
         };
         logoTimer.start();
+
+        //using custom font for logo
+        TextView tx = (TextView)findViewById(R.id.splashtext);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Trocchi-Bold.otf");
+        tx.setTypeface(custom_font);
+
+
+        //hiding the action bar!
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
     }
 }

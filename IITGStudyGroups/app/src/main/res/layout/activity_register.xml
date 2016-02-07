@@ -17,11 +17,31 @@
             android:text="IITG\nSTUDY GROUPS"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/splashtext2"
+            android:id="@+id/splashtext3"
             android:textSize="25sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_marginBottom="24dp"
             android:gravity="center" />
+
+        <!--  Name Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:shadowColor="@color/colorPrimaryDark"
+                android:textColorHighlight="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimaryDark"
+                android:cursorVisible="true"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:hint="Name" />
+        </android.support.design.widget.TextInputLayout>
 
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
@@ -30,7 +50,7 @@
             android:textColorHint="@color/colorPrimaryDark"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/login_email"
+            <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimaryDark"
@@ -50,7 +70,7 @@
             android:textColorHint="@color/colorPrimaryDark"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/login_password"
+            <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimaryDark"
@@ -64,7 +84,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_register"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -72,15 +92,15 @@
             android:padding="12dp"
             android:textColor="@color/colorPrimaryLight"
             android:background="@color/colorPrimaryDark"
-            android:text="Login"/>
+            android:text="Create Account"/>
 
-        <TextView android:id="@+id/link_register"
+        <TextView android:id="@+id/link_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:textColor="@color/colorPrimaryDark"
             android:shadowColor="@color/colorPrimaryDark"
-            android:text="No account yet? Create one!"
+            android:text="Already a member? Login!"
             android:clickable="true"
             android:gravity="center"
             android:textSize="16dip"/>

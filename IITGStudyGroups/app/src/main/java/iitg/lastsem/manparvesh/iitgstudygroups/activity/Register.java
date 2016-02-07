@@ -12,15 +12,15 @@ import android.widget.TextView;
 
 import iitg.lastsem.manparvesh.iitgstudygroups.R;
 
-public class LoginRegister extends AppCompatActivity {
+public class Register extends AppCompatActivity {
 
-    private static TextView linkRegister;
+    TextView linkLogin;
     private static Button goHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_register);
+        setContentView(R.layout.activity_register);
 
         //hiding the action bar!
         if (getSupportActionBar() != null) {
@@ -36,22 +36,22 @@ public class LoginRegister extends AppCompatActivity {
         }
 
         //using custom font for logo
-        TextView tx = (TextView)findViewById(R.id.splashtext2);
+        TextView tx = (TextView)findViewById(R.id.splashtext3);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Trocchi-Bold.otf");
         tx.setTypeface(custom_font);
 
-        linkRegister = (TextView)findViewById(R.id.link_register);
-        linkRegister.setOnClickListener(new View.OnClickListener() {
+        linkLogin = (TextView) findViewById(R.id.link_login);
+        linkLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), Register.class);
+                Intent intent = new Intent(getApplicationContext(), LoginRegister.class);
                 startActivity(intent);
             }
         });
 
-        goHome = (Button) findViewById(R.id.btn_login);
+        goHome = (Button) findViewById(R.id.btn_register);
         goHome.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -63,8 +63,5 @@ public class LoginRegister extends AppCompatActivity {
         });
 
         //TODO: connection with the database!
-
-
-
     }
 }
