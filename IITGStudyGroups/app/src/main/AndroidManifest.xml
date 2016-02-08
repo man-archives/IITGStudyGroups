@@ -85,6 +85,7 @@
         <activity android:name=".activity.MyGroups" />
         <activity android:name=".activity.PublicGroups" />
         <activity android:name=".activity.CreateGroup" />
+        <activity android:name=".firebase.GroupDIscussion"></activity>
     </application>
 
 </manifest>
