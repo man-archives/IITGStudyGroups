@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
+
+import iitg.lastsem.manparvesh.iitgstudygroups.DBentries.User;
 import iitg.lastsem.manparvesh.iitgstudygroups.R;
 
 public class Register extends AppCompatActivity {
@@ -22,9 +25,13 @@ public class Register extends AppCompatActivity {
 
     private EditText nameET, passwordET, emailET;
 
+    private Firebase ref;
+    private static final String FIREBASE_URL = "https://iitg-study-groups.firebaseio.com";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_register);
 
         //hiding the action bar!
@@ -88,6 +95,12 @@ public class Register extends AppCompatActivity {
         String password = passwordET.getText().toString();
 
         // TODO: Implement signup
+
+        ref = new Firebase(FIREBASE_URL).child("users").child(email);
+
+        User user = new User(name, password, email);
+
+        ref.setValue(user);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {

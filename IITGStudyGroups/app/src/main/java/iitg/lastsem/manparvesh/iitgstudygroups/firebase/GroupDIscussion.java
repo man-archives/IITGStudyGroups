@@ -91,9 +91,9 @@ public class GroupDIscussion extends ListActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 boolean connected = (Boolean) dataSnapshot.getValue();
                 if (connected) {
-                    Toast.makeText(GroupDIscussion.this, "Connected to Firebase", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GroupDIscussion.this, "Connected to server", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(GroupDIscussion.this, "Disconnected from Firebase", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GroupDIscussion.this, "Disconnected from server", Toast.LENGTH_SHORT).show();
                 }
             }
 
