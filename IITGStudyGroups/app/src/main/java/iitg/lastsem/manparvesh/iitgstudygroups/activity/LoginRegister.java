@@ -96,7 +96,7 @@ public class LoginRegister extends AppCompatActivity {
 
         //check if username exists in firebase and get name from there.
 
-        
+
 
         pref.createLoginSession(email, password);
         //TODO: add username to this!

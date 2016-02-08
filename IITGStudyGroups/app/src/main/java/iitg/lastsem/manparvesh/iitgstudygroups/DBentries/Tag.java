@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Tag {
     private ArrayList<Group> groups;
+    private String name;
     public Tag(){groups = new ArrayList<>();}
 
     public Tag(ArrayList<Group> groups){
@@ -16,6 +17,11 @@ public class Tag {
         ArrayList<Group> al = new ArrayList<>();
         al.add(g);
         this.groups = al;
+    }
+
+    public Tag(String name){
+        this.name = name;
+        groups = new ArrayList<>();
     }
 
     public ArrayList<Group> getGroups(){
@@ -28,5 +34,13 @@ public class Tag {
 
     public void removeGroup(Group group){
         groups.remove(group);
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(String name){
+        return name;
     }
 }
