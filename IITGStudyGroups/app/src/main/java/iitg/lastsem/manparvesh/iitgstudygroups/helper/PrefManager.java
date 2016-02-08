@@ -39,7 +39,7 @@ public class PrefManager {
     /**
      * Create login session
      */
-    public void createLoginSession(String email, String password) {
+    public void createLoginSession(String email, String password, String username, String name) {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -47,6 +47,10 @@ public class PrefManager {
         editor.putString(KEY_EMAIL, email);
         //Storing password in pref
         editor.putString("password", password);
+
+        editor.putString("username", username);
+
+        editor.putString("name", name);
 
         // commit changes
         editor.commit();

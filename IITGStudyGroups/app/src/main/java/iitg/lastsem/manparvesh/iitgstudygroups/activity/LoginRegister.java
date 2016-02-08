@@ -92,8 +92,14 @@ public class LoginRegister extends AppCompatActivity {
 
         String email = inputEmail.getText().toString();
         String password =  inputPassword.getText().toString();
+        String username = email.replaceAll("[\\-\\+\\.\\^:,@]","");
+
+        //check if username exists in firebase and get name from there.
+
+        
 
         pref.createLoginSession(email, password);
+        //TODO: add username to this!
 
 
         //progress bar wala kamm
@@ -119,7 +125,7 @@ public class LoginRegister extends AppCompatActivity {
     }
 
     public void onLoginFailed(){
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Login failed. Check entries or Internet connection", Toast.LENGTH_LONG).show();
 
     }
 
@@ -130,14 +136,14 @@ public class LoginRegister extends AppCompatActivity {
         String password = inputPassword.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            inputEmail.setError("enter a valid email address");
+            inputEmail.setError("Enter a valid IITG webmail ID");
             valid = false;
         } else {
             inputEmail.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            inputPassword.setError("between 4 and 10 alphanumeric characters");
+            inputPassword.setError("Between 4 and 10 alphanumeric characters");
             valid = false;
         } else {
             inputPassword.setError(null);

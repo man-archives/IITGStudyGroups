@@ -17,6 +17,7 @@ import com.firebase.client.Firebase;
 
 import iitg.lastsem.manparvesh.iitgstudygroups.DBentries.User;
 import iitg.lastsem.manparvesh.iitgstudygroups.R;
+import iitg.lastsem.manparvesh.iitgstudygroups.helper.PrefManager;
 
 public class Register extends AppCompatActivity {
 
@@ -96,7 +97,11 @@ public class Register extends AppCompatActivity {
 
         // TODO: Implement signup
 
-        ref = new Firebase(FIREBASE_URL).child("users").child(email);
+        String username = email.replaceAll("[\\-\\+\\.\\^:,@]","");
+
+        PrefManager pref = new PrefManager();
+
+        ref = new Firebase(FIREBASE_URL).child("users").child(username);
 
         User user = new User(name, password, email);
 
@@ -132,21 +137,22 @@ public class Register extends AppCompatActivity {
         String password = passwordET.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
-            nameET.setError("at least 3 characters");
+            nameET.setError("At least 3 characters");
             valid = false;
         } else {
             nameET.setError(null);
         }
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailET.setError("enter a valid email address");
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() ||
+                !(email.endsWith("@iitg.ernet.in")||email.endsWith("@iitg.ac.in")) ) {
+            emailET.setError("Enter a valid IITG webmail ID");
             valid = false;
         } else {
             emailET.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            passwordET.setError("between 4 and 10 alphanumeric characters");
+            passwordET.setError("Between 4 and 10 alphanumeric characters");
             valid = false;
         } else {
             passwordET.setError(null);
