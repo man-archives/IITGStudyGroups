@@ -32,6 +32,10 @@ public class Group {
         return description;
     }
 
+    public void setDescription(String description){
+        this.description =  description;
+    }
+
     public ArrayList<Tag> getTags(){
         return tags;
     }

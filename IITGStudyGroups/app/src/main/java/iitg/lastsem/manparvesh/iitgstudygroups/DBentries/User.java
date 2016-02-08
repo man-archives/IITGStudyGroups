@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by Man Parvesh on 2/7/2016.
  */
 public class User {
-    private String fullName, userName, password, uID, email;
+    private String username, name, password, email;
     private ArrayList<Group> publicGroups, privateGroups;
 
     public User() {
@@ -14,44 +14,36 @@ public class User {
         privateGroups = new ArrayList<>();
     }
 
-    public User(String fullName, String userName, String uID, String password, String email) {
-        this.fullName = fullName;
-        this.userName = userName;
-        this.uID = uID;
+
+
+    public User(String name, String password, String email, String  username) {
+        this.name = name;
+        this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public User(String fullName, String userName, String password, String email) {
-        this.fullName = fullName;
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-    }
-    public User(String userName, String password) {
-        this.userName = userName;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
-    public User(String userName, String password, String email) {
-        this.userName = userName;
+
+    public User(String username, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
     public String getEmail(){
         return email;
-    }
-
-    public String getuID() {
-        return uID;
     }
 
     public String getPassword() {
@@ -62,8 +54,8 @@ public class User {
         this.email = email;
     }
 
-    public void updateFullName(String userName){
-        this.userName = userName;
+    public void updateName(String name){
+        this.name = name;
     }
 
     public ArrayList<Group> getPublicGroups(){

@@ -35,6 +35,14 @@ public class Register extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_register);
 
+        // if already logged in, go to Home
+        PrefManager pref = new PrefManager(getApplicationContext());
+        if (pref.isLoggedIn()) {
+            Intent intent = new Intent(Register.this, Home.class);
+            startActivity(intent);
+
+            finish();
+        }
         //hiding the action bar!
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
@@ -52,6 +60,9 @@ public class Register extends AppCompatActivity {
         TextView tx = (TextView)findViewById(R.id.splashtext3);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Trocchi-Bold.otf");
         tx.setTypeface(custom_font);
+
+
+
 
         nameET = (EditText) findViewById(R.id.registerName);
         emailET = (EditText) findViewById(R.id.registerEmail);
@@ -95,17 +106,16 @@ public class Register extends AppCompatActivity {
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
 
-        // TODO: Implement signup
-
         String username = email.replaceAll("[\\-\\+\\.\\^:,@]","");
-
-        PrefManager pref = new PrefManager();
 
         ref = new Firebase(FIREBASE_URL).child("users").child(username);
 
-        User user = new User(name, password, email);
+        User user = new User(name, password, email, username);
 
         ref.setValue(user);
+
+        PrefManager pref = new PrefManager(getApplicationContext());
+        pref.createLoginSession(email, password, username, name);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {

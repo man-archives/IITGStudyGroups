@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.TextView;
 
-import iitg.lastsem.manparvesh.iitgstudygroups.activity.LoginRegister;
+import iitg.lastsem.manparvesh.iitgstudygroups.activity.Register;
 
 public class Splash extends AppCompatActivity {
 
@@ -35,7 +35,7 @@ public class Splash extends AppCompatActivity {
                         sleep(100);
                         logoTimer = logoTimer +100;
                     }
-                    startActivity(new Intent(getApplicationContext(),LoginRegister.class));
+                    startActivity(new Intent(getApplicationContext(),Register.class));
                 }
                 catch (InterruptedException e) {
                     e.printStackTrace();

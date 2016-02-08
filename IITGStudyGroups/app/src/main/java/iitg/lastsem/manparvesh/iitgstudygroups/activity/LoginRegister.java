@@ -13,6 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import iitg.lastsem.manparvesh.iitgstudygroups.DBentries.User;
 import iitg.lastsem.manparvesh.iitgstudygroups.R;
 import iitg.lastsem.manparvesh.iitgstudygroups.helper.PrefManager;
 
@@ -28,7 +34,16 @@ public class LoginRegister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_login_register);
+
+        PrefManager pref = new PrefManager(getApplicationContext());
+        if (pref.isLoggedIn()) {
+            Intent intent = new Intent(LoginRegister.this, Home.class);
+            startActivity(intent);
+
+            finish();
+        }
 
         //hiding the action bar!
         if (getSupportActionBar() != null) {
@@ -83,6 +98,10 @@ public class LoginRegister extends AppCompatActivity {
         //finish this activity!
         finish();
     }
+
+    private Firebase ref;
+    private static final String FIREBASE_URL = "https://iitg-study-groups.firebaseio.com";
+
     public void login(){
 
         if (!validate()) {
@@ -92,40 +111,91 @@ public class LoginRegister extends AppCompatActivity {
 
         String email = inputEmail.getText().toString();
         String password =  inputPassword.getText().toString();
-        String username = email.replaceAll("[\\-\\+\\.\\^:,@]","");
+        String username = email.replaceAll("[\\-\\+\\.\\^:,@]", "");
 
-        //check if username exists in firebase and get name from there.
+        //TODO check if username exists in firebase and get name from there.
+        //TODO: still incorrect
+
+        //fbContains(username);
+        final String un = username;
+
+        ref = new Firebase(FIREBASE_URL).child("users"); //Root URL
 
 
 
-        pref.createLoginSession(email, password);
-        //TODO: add username to this!
+        flag = false;
+
+        ref.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //Toast.makeText(getBaseContext(), "no. of users: " + dataSnapshot.getChildrenCount() + "", Toast.LENGTH_SHORT).show();
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    //Toast.makeText(getBaseContext(), child.getValue(String.class), Toast.LENGTH_SHORT).show();
+
+                    User u = child.getValue(User.class);
+                    String uName = u.getUsername();
+                    if (uName.equals(un)) {
+                        flag = true;
+                        nameOfUser = u.getName();
+
+                        Toast.makeText(getBaseContext(), "Welcome, " + uName + "!", Toast.LENGTH_SHORT).show();
+                    }
 
 
-        //progress bar wala kamm
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
+
+            String name = nameOfUser ;
+
         final ProgressDialog progressDialog = new ProgressDialog(LoginRegister.this);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         //progressDialog.
         progressDialog.show();
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
 
+            pref.createLoginSession(email, password, username, name);
 
+            //progress bar wala kamm
 
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            // On complete call either onLoginSuccess or onLoginFailed
+                            onLoginSuccess();
+                            // onLoginFailed();
+                            progressDialog.dismiss();
+                        }
+                    }, 3000);
+        if(flag){
+            Toast.makeText(getBaseContext(),"Login successful!", Toast.LENGTH_SHORT).show();
+        }
 
+        if(!flag){
+            onLoginFailed();
+            return;
+        }
 
     }
 
+    private boolean flag;
+    private String nameOfUser;
+
+
     public void onLoginFailed(){
-        Toast.makeText(getBaseContext(), "Login failed. Check entries or Internet connection", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(), "Login failed. Check entries or Internet connection", Toast.LENGTH_LONG).show();
 
     }
 

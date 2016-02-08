@@ -12,7 +12,7 @@ import iitg.lastsem.manparvesh.iitgstudygroups.R;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
 
-    Button myGroups, newGroup, publicGroups, about;
+    Button newGroup, publicGroups, about;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,13 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
         }
 
-        myGroups = (Button) findViewById(R.id.btnHomeMyGroups);
+        //todo: add my groups
+//        myGroups = (Button) findViewById(R.id.btnHomeMyGroups);
         newGroup = (Button) findViewById(R.id.btnHomeCreateNewGroup);
         publicGroups = (Button) findViewById(R.id.btnHomePublicGroups);
         about = (Button) findViewById(R.id.btnHomeAbout);
 
-        myGroups.setOnClickListener(this);
+  //      myGroups.setOnClickListener(this);
         newGroup.setOnClickListener(this);
         publicGroups.setOnClickListener(this);
         about.setOnClickListener(this);
@@ -42,10 +43,11 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v){
         switch(v.getId()){
-            case R.id.btnHomeMyGroups:
+     /*       case R.id.btnHomeMyGroups:
                 Intent intent1 = new Intent(getApplicationContext(), MyGroups.class);
                 startActivity(intent1);
                 break;
+                */
             case R.id.btnHomeCreateNewGroup:
                 Intent intent2 = new Intent(getApplicationContext(), CreateGroup.class);
                 startActivity(intent2);

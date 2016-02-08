@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
+import android.webkit.WebView;
 
 import iitg.lastsem.manparvesh.iitgstudygroups.R;
 
@@ -21,5 +22,8 @@ public class About extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
         }
+
+        WebView myWebView = (WebView) findViewById(R.id.webVIEW);
+        myWebView.loadUrl("http://manparvesh.github.io/IITGStudyGroups/about.html"); //IITGStudyGroups/About
     }
 }

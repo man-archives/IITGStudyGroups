@@ -46,7 +46,10 @@ public class GroupDIscussion extends ListActivity {
 
         // Setup our Firebase mFirebaseRef
 
-        mFirebaseRef = new Firebase(FIREBASE_URL).child("chat");
+        String chatTag = "";
+
+        String groupName = getIntent().getStringExtra("groupName");
+        mFirebaseRef = new Firebase(FIREBASE_URL).child("groups").child(groupName).child("chat");
 
         // Setup our input methods. Enter key on the keyboard or pushing the send button
         EditText inputText = (EditText) findViewById(R.id.messageInput);
@@ -112,8 +115,8 @@ public class GroupDIscussion extends ListActivity {
     }
 
     private void setupUsername() {
-        SharedPreferences prefs = getApplication().getSharedPreferences("ChatPrefs", 0);
-        mUsername = prefs.getString("username", null);
+        SharedPreferences prefs = getApplication().getSharedPreferences("IITGStudyGroups", 0);
+        mUsername = prefs.getString("name", null);
         if (mUsername == null) {
             Random r = new Random();
             // Assign a random user name if we don't have one saved.

@@ -17,7 +17,7 @@
         android:layout_height="match_parent">
 
 
-        <android.support.v7.widget.AppCompatButton
+<!--        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnHomeMyGroups"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -25,6 +25,7 @@
             android:textColor="@color/colorPrimaryLight"
             android:background="@color/colorPrimaryDark"
             android:text="My Groups"/>
+        -->
 
 
         <android.support.v7.widget.AppCompatButton
@@ -35,7 +36,7 @@
             android:padding="12dp"
             android:textColor="@color/colorPrimaryLight"
             android:background="@color/colorPrimaryDark"
-            android:text="Public groups"/>
+            android:text="Groups"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnHomeCreateNewGroup"
