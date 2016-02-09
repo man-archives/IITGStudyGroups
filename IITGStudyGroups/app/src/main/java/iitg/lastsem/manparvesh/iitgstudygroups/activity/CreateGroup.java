@@ -41,23 +41,27 @@ public class CreateGroup extends AppCompatActivity {
         nameET = (EditText) findViewById(R.id.inputNewGroupName);
         descriptionET = (EditText) findViewById(R.id.inputGroupDescription);
 
-        final String name = nameET.getText().toString(), description = descriptionET.getText().toString();
 
-        ref = new Firebase(FIREBASE_URL).child("groups").child(name).child(name).child(name);
-
-        Group group = new Group();
-        group.setName(name);
-        group.setDescription(description);
-
-        ref.setValue(group);
-
-        final String gn = name;
 
         Button newGroup = (Button)findViewById(R.id.btnCreateNewGroupCreateNewGroup);
         newGroup.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
+                String name = nameET.getText().toString(), description = descriptionET.getText().toString();
+
+                //Toast.makeText(getBaseContext(), name + "\n" + description, Toast.LENGTH_SHORT).show();
+
+                String nm = name.replaceAll("[\\-\\+\\.\\^:,@]", "").toLowerCase();
+                ref = new Firebase(FIREBASE_URL + "/groups/"+nm).child(nm);
+
+                Group group = new Group(name, description);
+
+                ref.setValue(group);
+
+                final String gn = nm;
+
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), GroupDIscussion.class);
                 intent.putExtra("groupName", gn);

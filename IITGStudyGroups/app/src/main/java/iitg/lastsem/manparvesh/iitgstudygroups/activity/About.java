@@ -24,6 +24,6 @@ public class About extends AppCompatActivity {
         }
 
         WebView myWebView = (WebView) findViewById(R.id.webVIEW);
-        myWebView.loadUrl("http://manparvesh.github.io/IITGStudyGroups/about.html"); //IITGStudyGroups/About
+        myWebView.loadUrl("http://manparvesh.github.io/IITGStudyGroups/"); //IITGStudyGroups/About
     }
 }

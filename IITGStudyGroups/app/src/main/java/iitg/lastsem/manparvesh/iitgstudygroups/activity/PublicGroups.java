@@ -43,7 +43,11 @@ public class PublicGroups extends ListActivity {
 
         ref = new Firebase(FIREBASE_URL).child("groups");
 
-        final ArrayList<String> groups = new ArrayList<>();
+
+
+
+
+
         ref.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -54,15 +58,18 @@ public class PublicGroups extends ListActivity {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     //Toast.makeText(getBaseContext(), child.getValue(String.class), Toast.LENGTH_SHORT).show();
 
-                    Group group = child.getValue(Group.class);
+                    String key = child.getKey();
+
+                    Group group = child.child(key).getValue(Group.class);
 
                     groups.add(group.getName());
 
-
-                    //Toast.makeText(getBaseContext(), "Welcome, " + uName + "!", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getBaseContext(), group.getName(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), String.valueOf(groups.size()), Toast.LENGTH_SHORT).show();
 
                 }
+
+                agge();
             }
 
             @Override
@@ -71,10 +78,18 @@ public class PublicGroups extends ListActivity {
             }
         });
 
+
+
+
+    }
+
+    private void agge() {
+
         String[] gr = groups.toArray(new String[groups.size()]);
 
+        //Toast.makeText(getBaseContext(), String.valueOf(groups.size()), Toast.LENGTH_SHORT).show();
 
-        this.setListAdapter(new ArrayAdapter<String>(this, R.layout.group_button, R.id.btnOpenGroup, gr));
+        this.setListAdapter(new ArrayAdapter<>(this, R.layout.group_button, R.id.btnOpenGroup, gr));
 
 
         ListView lv = getListView();
@@ -83,7 +98,7 @@ public class PublicGroups extends ListActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                // selected item
+                // selected button
                 String groupName = ((Button) view).getText().toString();
 
                 // Launching new Activity on selecting single List Item
@@ -95,6 +110,7 @@ public class PublicGroups extends ListActivity {
             }
         });
 
-
     }
+
+    private ArrayList<String> groups = new ArrayList<>();
 }

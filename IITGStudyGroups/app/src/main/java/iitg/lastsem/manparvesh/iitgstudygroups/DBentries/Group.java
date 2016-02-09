@@ -6,22 +6,28 @@ import java.util.ArrayList;
  * Created by Man Parvesh on 2/8/2016.
  */
 public class Group {
-    private ArrayList<User> userList;
-    private ArrayList<Tag> tags;
+    //// TODO: 2/9/2016 add the following stuff too!
+    //private ArrayList<User> userList;
+    //private ArrayList<Tag> tags;
     private String name, description;
-    private boolean isPrivate;
+//    private boolean isPrivate;
 
     public Group(String name, String description, ArrayList<Tag> tags, ArrayList<User> userList, boolean isPrivate){
         this.name = name;
         this.description = description;
-        this.tags = tags;
-        this.userList = userList;
-        this.isPrivate = isPrivate;
+//        this.tags = tags;
+  //      this.userList = userList;
+    //    this.isPrivate = isPrivate;
     }
 
     public Group(){
-        userList = new ArrayList<>();
-        tags = new ArrayList<>();
+  //      userList = new ArrayList<>();
+    //    tags = new ArrayList<>();
+    }
+
+    public Group(String name, String description){
+        this.name = name;
+        this.description = description;
     }
 
     public String getName(){
@@ -36,14 +42,14 @@ public class Group {
         this.description =  description;
     }
 
-    public ArrayList<Tag> getTags(){
-        return tags;
-    }
+//    public ArrayList<Tag> getTags(){
+  //      return tags;
+    //}
 
-    public ArrayList<User> getUserList(){
-        return userList;
-    }
-
+//    public ArrayList<User> getUserList(){
+  //      return userList;
+    //}
+/*
     public boolean getIsPrivate(){
         return isPrivate;
     }
@@ -63,12 +69,13 @@ public class Group {
     public void changeGroupPrivacyToPublic(){
         isPrivate = false;
     }
+    */
 
     public void setName(String name){
         this.name = name;
     }
 
-    public void removeUser(User user){
+  /*  public void removeUser(User user){
         this.userList.remove(user);
     }
 
@@ -76,5 +83,5 @@ public class Group {
         this.tags.remove(tag);
     }
 
-
+*/
 }
