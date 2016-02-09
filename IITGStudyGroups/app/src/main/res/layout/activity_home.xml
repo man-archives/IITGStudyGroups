@@ -33,6 +33,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:textSize="20sp"
             android:padding="12dp"
             android:textColor="@color/colorPrimaryLight"
             android:background="@color/colorPrimaryDark"
@@ -42,8 +43,9 @@
             android:id="@+id/btnHomeCreateNewGroup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="130dp"
             android:padding="12dp"
             android:textColor="@color/colorPrimaryLight"
             android:background="@color/colorPrimaryDark"
@@ -62,12 +64,13 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnHomeAbout"
             android:layout_width="fill_parent"
+            android:textSize="20sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
             android:padding="12dp"
             android:layout_gravity="bottom"
             android:textColor="#fff"
-            android:background="@color/colorPrimaryMid"
+            android:background="@color/colorPrimaryDark"
             android:text="About the app"/>
 
     </LinearLayout>

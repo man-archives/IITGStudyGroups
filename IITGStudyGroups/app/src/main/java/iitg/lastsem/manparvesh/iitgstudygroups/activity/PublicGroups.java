@@ -1,6 +1,7 @@
 package iitg.lastsem.manparvesh.iitgstudygroups.activity;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,8 +9,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -33,6 +34,12 @@ public class PublicGroups extends ListActivity {
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_public_groups);
 
+
+//        getActionBar().show();
+  //      getActionBar().setTitle("Groups");
+
+        setTitle("Study Groups");
+
         //set navigation bar and status bar colors!
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             Window window = this.getWindow();
@@ -44,6 +51,10 @@ public class PublicGroups extends ListActivity {
         ref = new Firebase(FIREBASE_URL).child("groups");
 
 
+        progressDialog = new ProgressDialog(PublicGroups.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading Groups..");
+        progressDialog.show();
 
 
 
@@ -54,6 +65,8 @@ public class PublicGroups extends ListActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //Toast.makeText(getBaseContext(), "no. of users: " + dataSnapshot.getChildrenCount() + "", Toast.LENGTH_SHORT).show();
+
+                groups.clear();
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     //Toast.makeText(getBaseContext(), child.getValue(String.class), Toast.LENGTH_SHORT).show();
@@ -83,13 +96,17 @@ public class PublicGroups extends ListActivity {
 
     }
 
+    private ProgressDialog progressDialog;
+
     private void agge() {
 
         String[] gr = groups.toArray(new String[groups.size()]);
 
         //Toast.makeText(getBaseContext(), String.valueOf(groups.size()), Toast.LENGTH_SHORT).show();
 
-        this.setListAdapter(new ArrayAdapter<>(this, R.layout.group_button, R.id.btnOpenGroup, gr));
+        this.setListAdapter(new ArrayAdapter<>(this, R.layout.list_item, R.id.label, gr));
+
+        progressDialog.dismiss();
 
 
         ListView lv = getListView();
@@ -99,7 +116,7 @@ public class PublicGroups extends ListActivity {
                                     int position, long id) {
 
                 // selected button
-                String groupName = ((Button) view).getText().toString();
+                String groupName = ((TextView) view).getText().toString().replaceAll("[\\-\\+\\.\\^:,@]", "").toLowerCase();
 
                 // Launching new Activity on selecting single List Item
                 Intent i = new Intent(getApplicationContext(), GroupDIscussion.class);

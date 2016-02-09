@@ -3,6 +3,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
+    android:background="#fff"
 
 tools:context="iitg.lastsem.manparvesh.iitgstudygroups.firebase.GroupDIscussion">
 
@@ -12,6 +13,8 @@ tools:context="iitg.lastsem.manparvesh.iitgstudygroups.firebase.GroupDIscussion"
     android:layout_height="wrap_content"
     android:layout_above="@+id/listFooter"
     android:layout_alignParentTop="true"
+    android:dividerHeight="5sp"
+    android:divider="#fff"
     android:transcriptMode="alwaysScroll" />
 
 <LinearLayout

@@ -8,12 +8,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorPrimaryLight"
     tools:context="iitg.lastsem.manparvesh.iitgstudygroups.activity.PublicGroups">
 
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10sp"
+        android:dividerHeight="10sp"
+        android:divider="@color/colorPrimaryLight"
         android:id="@android:id/list"/>
 
 
